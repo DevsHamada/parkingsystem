@@ -24,7 +24,7 @@ public class FareCalculatorService {
         if (ticket.isDiscount()) {
             parkingTimeHours = (parkingTimeHours * Fare.DISCOUNT_VEHICLE);
         }
-        if (parkingTimeHours < 0.5) {
+        if (parkingTimeHours <= 0.5) {
             ticket.setPrice(0.0);
         }
         else {

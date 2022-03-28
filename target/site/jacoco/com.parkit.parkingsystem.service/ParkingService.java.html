@@ -44,9 +44,9 @@ public class ParkingService {
 <span class="fc" id="L44">                ticket.setPrice(0);</span>
 <span class="fc" id="L45">                ticket.setInTime(inTime);</span>
 <span class="fc" id="L46">                ticket.setOutTime(null);</span>
-<span class="pc bpc" id="L47" title="1 of 2 branches missed.">                if (ticketDAO.getVehicleRecurringIn(vehicleRegNumber)) {</span>
-<span class="nc" id="L48">                    ticket.setDiscount(true);</span>
-<span class="nc" id="L49">                    System.out.println(&quot;Happy to see you again :) ! 5% discount will be granted to you in exit&quot;);</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">                if (ticketDAO.getVehicleRecurringIn(vehicleRegNumber)) {</span>
+<span class="fc" id="L48">                    ticket.setDiscount(true);</span>
+<span class="fc" id="L49">                    System.out.println(&quot;Happy to see you again :) ! 5% discount will be granted to you in exit&quot;);</span>
                 } else {
 <span class="fc" id="L51">                    ticket.setDiscount(false);</span>
                 }
@@ -110,9 +110,9 @@ public class ParkingService {
 <span class="fc" id="L110">            Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);</span>
 <span class="fc" id="L111">            Date outTime = new Date();</span>
 <span class="fc" id="L112">            ticket.setOutTime(outTime);</span>
-<span class="pc bpc" id="L113" title="1 of 2 branches missed.">            if (ticketDAO.getVehicleRecurringOut(vehicleRegNumber) &gt; 1) {</span>
-<span class="nc" id="L114">                ticket.setDiscount(true);</span>
-<span class="nc" id="L115">                System.out.println(&quot;5% discount Calculate !!!!&quot;);</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">            if (ticketDAO.getVehicleRecurringOut(vehicleRegNumber) &gt; 1) {</span>
+<span class="fc" id="L114">                ticket.setDiscount(true);</span>
+<span class="fc" id="L115">                System.out.println(&quot;5% discount Calculate !!!!&quot;);</span>
             } else {
 <span class="fc" id="L117">                ticket.setDiscount(false);</span>
             }

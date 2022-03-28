@@ -21,10 +21,10 @@ import java.util.concurrent.TimeUnit;
 <span class="fc" id="L21">        long duration = outHour.getTime() - inHour.getTime();</span>
 <span class="fc" id="L22">        double parkingTime = TimeUnit.MILLISECONDS.toMinutes(duration);</span>
 <span class="fc" id="L23">        double parkingTimeHours =  (parkingTime / 60);</span>
-<span class="pc bpc" id="L24" title="1 of 2 branches missed.">        if (ticket.isDiscount()) {</span>
-<span class="nc" id="L25">            parkingTimeHours = (parkingTimeHours * Fare.DISCOUNT_VEHICLE);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if (ticket.isDiscount()) {</span>
+<span class="fc" id="L25">            parkingTimeHours = (parkingTimeHours * Fare.DISCOUNT_VEHICLE);</span>
         }
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (parkingTimeHours &lt; 0.5) {</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (parkingTimeHours &lt;= 0.5) {</span>
 <span class="fc" id="L28">            ticket.setPrice(0.0);</span>
         }
         else {
