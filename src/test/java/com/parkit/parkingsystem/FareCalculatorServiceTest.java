@@ -162,5 +162,7 @@ public class FareCalculatorServiceTest {
         ticket.setDiscount(true);
         fareCalculatorService.calculateFare(ticket);
         assertNotEquals( (2 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
+        assertEquals( 2.8499999999999996, ticket.getPrice());
+
     }
 }
