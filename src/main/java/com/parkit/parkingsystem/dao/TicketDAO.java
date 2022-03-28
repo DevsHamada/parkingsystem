@@ -20,6 +20,7 @@ public class TicketDAO {
     public DataBaseConfig dataBaseConfig = new DataBaseConfig();
 
     public boolean saveTicket(Ticket ticket){
+        boolean result = false;
         Connection con = null;
         try {
             con = dataBaseConfig.getConnection();
@@ -31,13 +32,13 @@ public class TicketDAO {
             ps.setDouble(3, ticket.getPrice());
             ps.setTimestamp(4, new Timestamp(ticket.getInTime().getTime()));
             ps.setTimestamp(5, (ticket.getOutTime() == null)?null: (new Timestamp(ticket.getOutTime().getTime())) );
-            return ps.execute();
+            result =  (ps.executeUpdate() != 0);
         }catch (Exception ex){
             logger.error("Error fetching next available slot",ex);
         }finally {
             dataBaseConfig.closeConnection(con);
-            return false;
         }
+        return result;
     }
 
     public Ticket getTicket(String vehicleRegNumber) {
@@ -85,5 +86,47 @@ public class TicketDAO {
             dataBaseConfig.closeConnection(con);
         }
         return false;
+    }
+
+    public boolean getVehicleRecurringIn(String vehicleRegNumber) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean result = false;
+        try {
+            con = dataBaseConfig.getConnection();
+            ps = con.prepareStatement(DBConstants.GET_VEHICLE);
+            ps.setString(1,vehicleRegNumber);
+            rs = ps.executeQuery();
+            result = rs.next();
+        }catch (Exception ex){
+            logger.error("Error search vehicle Recurring",ex);
+        }finally {
+            dataBaseConfig.closeResultSet(rs);
+            dataBaseConfig.closePreparedStatement(ps);
+            dataBaseConfig.closeConnection(con);
+
+        } return result;
+    }
+    public int getVehicleRecurringOut(String vehicleRegNumber) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int nb = 0;
+        try {
+            con = dataBaseConfig.getConnection();
+            ps = con.prepareStatement(DBConstants.GET_VEHICLE_OUT);
+            ps.setString(1,vehicleRegNumber);
+            rs = ps.executeQuery();
+            rs.next();
+            nb=rs.getInt(1);
+        }catch (Exception ex){
+            logger.error("Error search vehicle Recurring out",ex);
+        }finally {
+            dataBaseConfig.closeResultSet(rs);
+            dataBaseConfig.closePreparedStatement(ps);
+            dataBaseConfig.closeConnection(con);
+
+        } return nb;
     }
 }

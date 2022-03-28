@@ -44,6 +44,12 @@ public class ParkingService {
                 ticket.setPrice(0);
                 ticket.setInTime(inTime);
                 ticket.setOutTime(null);
+                if (ticketDAO.getVehicleRecurringIn(vehicleRegNumber)) {
+                    ticket.setDiscount(true);
+                    System.out.println("Happy to see you again :) ! 5% discount will be granted to you in exit");
+                } else {
+                    ticket.setDiscount(false);
+                }
                 ticketDAO.saveTicket(ticket);
                 System.out.println("Generated Ticket and saved in DB");
                 System.out.println("Please park your vehicle in spot number:"+parkingSpot.getId());
@@ -68,7 +74,8 @@ public class ParkingService {
             if(parkingNumber > 0){
                 parkingSpot = new ParkingSpot(parkingNumber,parkingType, true);
             }else{
-                throw new Exception("Error fetching parking number from DB. Parking slots might be full");
+ //               throw new Exception("Error fetching parking number from DB. Parking slots might be full");
+                System.out.println("******The parking spaces are full ==> see you next time!*******");
             }
         }catch(IllegalArgumentException ie){
             logger.error("Error parsing user input for type of vehicle", ie);
@@ -103,6 +110,12 @@ public class ParkingService {
             Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
             Date outTime = new Date();
             ticket.setOutTime(outTime);
+            if (ticketDAO.getVehicleRecurringOut(vehicleRegNumber) > 1) {
+                ticket.setDiscount(true);
+                System.out.println("5% discount Calculate !!!!");
+            } else {
+                ticket.setDiscount(false);
+            }
             fareCalculatorService.calculateFare(ticket);
             if(ticketDAO.updateTicket(ticket)) {
                 ParkingSpot parkingSpot = ticket.getParkingSpot();

@@ -15,7 +15,7 @@ public class ParkingSpotDAO {
     private static final Logger logger = LogManager.getLogger("ParkingSpotDAO");
 
     public DataBaseConfig dataBaseConfig = new DataBaseConfig();
-
+// recupére la prochaine place disponible dans la base
     public int getNextAvailableSlot(ParkingType parkingType){
         Connection con = null;
         int result=-1;
