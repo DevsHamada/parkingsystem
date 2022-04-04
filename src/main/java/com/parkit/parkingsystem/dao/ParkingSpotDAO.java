@@ -54,15 +54,16 @@ public class ParkingSpotDAO {
             ps = con.prepareStatement(DBConstants.UPDATE_PARKING_SPOT);
             ps.setBoolean(1, parkingSpot.isAvailable());
             ps.setInt(2, parkingSpot.getId());
-        //    rs = ps.executeQuery();
             result = (ps.executeUpdate() == 1);
         } catch (SQLException | ClassNotFoundException | RuntimeException | IOException ex) {
             logger.error("Error updating parking info", ex);
         } catch (Exception ex) {
             logger.error("Exception updating parking ", ex);
         } finally {
-            dataBaseConfig.closeResultSet(rs);
-            dataBaseConfig.closePreparedStatement(ps);
+            if (ps != null)
+            {
+                dataBaseConfig.closePreparedStatement(ps);
+            }
             dataBaseConfig.closeConnection(con);
         }
         return result;

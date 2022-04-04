@@ -1,2 +1,2 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<BugCollection version='3.0.1' threshold='low' effort='max'><file classname='com.parkit.parkingsystem.dao.ParkingSpotDAO'></file><Error></Error><Project><SrcDir>C:\Users\S642238\IdeaProjects\parkingsystem\src\main\java</SrcDir><SrcDir>C:\Users\S642238\IdeaProjects\parkingsystem\src\test\java</SrcDir></Project></BugCollection>
+<BugCollection version='3.0.1' threshold='low' effort='max'><Error></Error><Project><SrcDir>C:\Users\S642238\IdeaProjects\parkingsystem\src\main\java</SrcDir><SrcDir>C:\Users\S642238\IdeaProjects\parkingsystem\src\test\java</SrcDir></Project></BugCollection>
