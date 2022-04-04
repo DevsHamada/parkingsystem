@@ -5,12 +5,17 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
-
 public class InputReaderUtil {
 
-    private static Scanner scan = new Scanner(System.in);
+    //private final Scanner scan = new Scanner(System.in);
+    //private static final Logger logger = LogManager.getLogger("InputReaderUtil");
+    private final Scanner scan;
     private static final Logger logger = LogManager.getLogger("InputReaderUtil");
 
+
+    public InputReaderUtil () {
+        this.scan = new Scanner(System.in, "UTF-8");
+    }
     public int readSelection() {
         try {
             int input = Integer.parseInt(scan.nextLine());

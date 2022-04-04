@@ -5,36 +5,41 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+public class InputReaderUtil {
 
-<span class="fc" id="L9">public class InputReaderUtil {</span>
+    //private final Scanner scan = new Scanner(System.in);
+    //private static final Logger logger = LogManager.getLogger(&quot;InputReaderUtil&quot;);
+    private final Scanner scan;
+<span class="fc" id="L13">    private static final Logger logger = LogManager.getLogger(&quot;InputReaderUtil&quot;);</span>
 
-<span class="fc" id="L11">    private static Scanner scan = new Scanner(System.in);</span>
-<span class="fc" id="L12">    private static final Logger logger = LogManager.getLogger(&quot;InputReaderUtil&quot;);</span>
 
+<span class="fc" id="L16">    public InputReaderUtil () {</span>
+<span class="fc" id="L17">        this.scan = new Scanner(System.in, &quot;UTF-8&quot;);</span>
+<span class="fc" id="L18">    }</span>
     public int readSelection() {
         try {
-<span class="nc" id="L16">            int input = Integer.parseInt(scan.nextLine());</span>
-<span class="nc" id="L17">            return input;</span>
-<span class="fc" id="L18">        }catch(Exception e){</span>
-<span class="fc" id="L19">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
-<span class="fc" id="L20">            System.out.println(&quot;Error reading input. Please enter valid number for proceeding further&quot;);</span>
-<span class="fc" id="L21">            return -1;</span>
+<span class="nc" id="L21">            int input = Integer.parseInt(scan.nextLine());</span>
+<span class="nc" id="L22">            return input;</span>
+<span class="fc" id="L23">        }catch(Exception e){</span>
+<span class="fc" id="L24">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
+<span class="fc" id="L25">            System.out.println(&quot;Error reading input. Please enter valid number for proceeding further&quot;);</span>
+<span class="fc" id="L26">            return -1;</span>
         }
     }
 
     public String readVehicleRegistrationNumber() throws Exception {
-<span class="fc" id="L26">        String result = null;</span>
+<span class="fc" id="L31">        String result = null;</span>
         try {
-<span class="fc" id="L28">            String vehicleRegNumber = scan.nextLine();</span>
-<span class="pc bpc" id="L29" title="2 of 4 branches missed.">            if (vehicleRegNumber != null &amp;&amp; vehicleRegNumber.trim().length() &gt; 0) {</span>
-<span class="fc" id="L30">                result = vehicleRegNumber;</span>
+<span class="fc" id="L33">            String vehicleRegNumber = scan.nextLine();</span>
+<span class="pc bpc" id="L34" title="2 of 4 branches missed.">            if (vehicleRegNumber != null &amp;&amp; vehicleRegNumber.trim().length() &gt; 0) {</span>
+<span class="fc" id="L35">                result = vehicleRegNumber;</span>
             }
-<span class="nc" id="L32">        } catch (Exception e) {</span>
-<span class="nc" id="L33">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
-<span class="nc" id="L34">            System.out.println(&quot;Error reading input. Please enter a valid string for vehicle registration number&quot;);</span>
-<span class="nc" id="L35">            throw e;</span>
-<span class="fc" id="L36">        }</span>
-<span class="fc" id="L37">        return result;</span>
+<span class="nc" id="L37">        } catch (Exception e) {</span>
+<span class="nc" id="L38">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
+<span class="nc" id="L39">            System.out.println(&quot;Error reading input. Please enter a valid string for vehicle registration number&quot;);</span>
+<span class="nc" id="L40">            throw e;</span>
+<span class="fc" id="L41">        }</span>
+<span class="fc" id="L42">        return result;</span>
     }
 
 
